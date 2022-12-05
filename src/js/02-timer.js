@@ -2,6 +2,7 @@ import AirDatepicker from 'air-datepicker';
 import 'air-datepicker/air-datepicker.css';
 
 const body = document.querySelector('body');
+const button = document.querySelector('button');
 const daySpan = document.querySelector('[data-days]');
 const hourSpan = document.querySelector('[data-hours]');
 const minSpan = document.querySelector('[data-minutes]');
@@ -10,16 +11,37 @@ const startBut = document.querySelector('[data-start]');
 const timer = document.querySelector('.timer');
 const input = document.querySelector('input');
 
-body.style.backgroundColor = 'green';
-timer.style.marginLeft = '270px';
+const timerLabel = document.createElement('p');
+timerLabel.style.color = 'red';
+timerLabel.style.paddingLeft = '20px';
+timerLabel.style.fontSize = '50px';
+timerLabel.textContent = 'russia explodes in';
+timer.prepend(timerLabel);
+
+console.log(body);
+body.style.backgroundSize = '100%';
+body.style.backgroundImage =
+  "url('https://krot.info/uploads/posts/2022-01/1642571168_3-krot-info-p-bomba-art-8.jpg')";
+timer.style.marginLeft = '900px';
+timer.style.marginTop = '290px';
+button.style.backgroundColor = 'red';
+button.style.color = 'white';
+button.style.borderRadius = '15%';
+button.style.padding = '7px';
+button.style.fontSize = '18px';
+button.style.border = 'none';
 input.style.display = 'inlineBlock';
 input.style.width = '340px';
+input.style.fontSize = '24px';
+input.style.marginLeft = '50px';
+input.style.marginRight = '10px';
+
 let spanArray = [daySpan, hourSpan, minSpan, secSpan];
 
 for (const span of spanArray) {
   span.style.fontWeight = 'bold';
-  span.style.color = 'red';
-  span.style.fontSize = '30px';
+  span.style.color = 'dodgerblue';
+  span.style.fontSize = '46px';
 }
 // daySpan.style.fontWeight = 'bold';
 // nums.style.color = 'red';
