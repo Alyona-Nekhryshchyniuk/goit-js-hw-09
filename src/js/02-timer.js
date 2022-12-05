@@ -1,16 +1,29 @@
 import AirDatepicker from 'air-datepicker';
 import 'air-datepicker/air-datepicker.css';
 
+const body = document.querySelector('body');
 const daySpan = document.querySelector('[data-days]');
 const hourSpan = document.querySelector('[data-hours]');
 const minSpan = document.querySelector('[data-minutes]');
 const secSpan = document.querySelector('[data-seconds]');
 const startBut = document.querySelector('[data-start]');
+const timer = document.querySelector('.timer');
 const input = document.querySelector('input');
 
-input.style.display = 'block';
-input.style.width = '350px';
+body.style.backgroundImage = "url('../bg.jpg')";
+timer.style.marginLeft = '270px';
+input.style.display = 'inlineBlock';
+input.style.width = '340px';
+let spanArray = [daySpan, hourSpan, minSpan, secSpan];
 
+for (const span of spanArray) {
+  span.style.fontWeight = 'bold';
+  span.style.color = 'red';
+  span.style.fontSize = '30px';
+}
+// daySpan.style.fontWeight = 'bold';
+// nums.style.color = 'red';
+// nums.style.fontSize = '30px';
 let id;
 let startTimerValue;
 
@@ -24,7 +37,6 @@ const updateSpanValues = vals => {
 
 new AirDatepicker('#datetime-picker', {
   timepicker: true,
-  position: 'bottom right',
   onSelect(formattedDate) {
     clearInterval(id);
     if (startBut.hasAttribute('disabled')) {
