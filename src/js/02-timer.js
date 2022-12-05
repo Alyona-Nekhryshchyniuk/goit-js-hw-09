@@ -10,7 +10,7 @@ const startBut = document.querySelector('[data-start]');
 const timer = document.querySelector('.timer');
 const input = document.querySelector('input');
 
-body.style.backgroundImage = "url('bg.jpg')";
+body.style.backgroundColor = 'green';
 timer.style.marginLeft = '270px';
 input.style.display = 'inlineBlock';
 input.style.width = '340px';
