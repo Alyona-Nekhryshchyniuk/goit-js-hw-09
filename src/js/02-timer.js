@@ -2,7 +2,6 @@ import AirDatepicker from 'air-datepicker';
 import 'air-datepicker/air-datepicker.css';
 
 const body = document.querySelector('body');
-const button = document.querySelector('button');
 const daySpan = document.querySelector('[data-days]');
 const hourSpan = document.querySelector('[data-hours]');
 const minSpan = document.querySelector('[data-minutes]');
@@ -24,12 +23,13 @@ body.style.backgroundImage =
   "url('https://krot.info/uploads/posts/2022-01/1642571168_3-krot-info-p-bomba-art-8.jpg')";
 timer.style.marginLeft = '900px';
 timer.style.marginTop = '290px';
-button.style.backgroundColor = 'red';
-button.style.color = 'white';
-button.style.borderRadius = '15%';
-button.style.padding = '7px';
-button.style.fontSize = '18px';
-button.style.border = 'none';
+startBut.style.backgroundColor = 'red';
+startBut.style.color = 'white';
+startBut.style.borderRadius = '15%';
+startBut.style.padding = '7px';
+startBut.style.fontSize = '18px';
+startBut.style.border = 'none';
+
 input.style.display = 'inlineBlock';
 input.style.width = '340px';
 input.style.fontSize = '24px';
@@ -43,9 +43,7 @@ for (const span of spanArray) {
   span.style.color = 'dodgerblue';
   span.style.fontSize = '46px';
 }
-// daySpan.style.fontWeight = 'bold';
-// nums.style.color = 'red';
-// nums.style.fontSize = '30px';
+
 let id;
 let startTimerValue;
 
@@ -57,22 +55,28 @@ const updateSpanValues = vals => {
   secSpan.textContent = chosenDateObj.secs;
 };
 
-new AirDatepicker('#datetime-picker', {
+const calendar = new AirDatepicker('#datetime-picker', {
   timepicker: true,
   onSelect(formattedDate) {
+    calendar.hide();
     clearInterval(id);
     if (startBut.hasAttribute('disabled')) {
       startBut.removeAttribute('disabled');
+      startBut.style.backgroundColor = 'red';
     }
     let currentTime = new Date();
     let chosen_Date_Time = formattedDate.date;
     startTimerValue = chosen_Date_Time - currentTime;
+    if (startTimerValue < 0) {
+      console.log('neg');
+    }
     updateSpanValues(startTimerValue);
   },
 });
 
 const startTimerOnClick = () => {
   startBut.setAttribute('disabled', '');
+  startBut.style.backgroundColor = 'lightcoral';
   id = setInterval(() => {
     startTimerValue -= 1000;
     updateSpanValues(startTimerValue);
