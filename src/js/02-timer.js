@@ -5,36 +5,43 @@ const daySpan = document.querySelector('[data-days]');
 const hourSpan = document.querySelector('[data-hours]');
 const minSpan = document.querySelector('[data-minutes]');
 const secSpan = document.querySelector('[data-seconds]');
-// const input = document.querySelector('#datetime-picker');
 const startBut = document.querySelector('[data-start]');
+const input = document.querySelector('input');
 
+input.style.display = 'block';
+input.style.width = '350px';
+
+let id;
 let startTimerValue;
 
-const air = new AirDatepicker('#datetime-picker', {
+const updateSpanValues = vals => {
+  let chosenDateObj = getTimeComponents(vals);
+  daySpan.textContent = chosenDateObj.days;
+  hourSpan.textContent = chosenDateObj.hours;
+  minSpan.textContent = chosenDateObj.mins;
+  secSpan.textContent = chosenDateObj.secs;
+};
+
+new AirDatepicker('#datetime-picker', {
   timepicker: true,
+  position: 'bottom right',
   onSelect(formattedDate) {
+    clearInterval(id);
+    if (startBut.hasAttribute('disabled')) {
+      startBut.removeAttribute('disabled');
+    }
     let currentTime = new Date();
     let chosen_Date_Time = formattedDate.date;
     startTimerValue = chosen_Date_Time - currentTime;
-    console.log(startTimerValue);
-    let chosenDateObj = getTimeComponents(startTimerValue);
-    console.log(chosenDateObj);
-    daySpan.textContent = chosenDateObj.days;
-    hourSpan.textContent = chosenDateObj.hours;
-    minSpan.textContent = chosenDateObj.mins;
-    secSpan.textContent = chosenDateObj.secs;
+    updateSpanValues(startTimerValue);
   },
 });
 
-// input.addEventListener('focus', () => {
-//   console.log(air.viewDate);
-// });
 const startTimerOnClick = () => {
-  const subtrahend = Date.now();
-
-  return setInterval(() => {
-    const minuend = Date.now();
-    console.log(getTimeComponents(minuend - subtrahend));
+  startBut.setAttribute('disabled', '');
+  id = setInterval(() => {
+    startTimerValue -= 1000;
+    updateSpanValues(startTimerValue);
   }, 1000);
 };
 
