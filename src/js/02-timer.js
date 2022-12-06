@@ -70,7 +70,7 @@ const calendar = new AirDatepicker('#datetime-picker', {
     let chosen_Date_Time = formattedDate.date;
     startTimerValue = chosen_Date_Time - currentTime;
     if (startTimerValue < 0) {
-      toastr.warning('Choose time in the future');
+      toastr.warning('Please choose date in the future');
     } else {
       updateSpanValues(startTimerValue);
     }
