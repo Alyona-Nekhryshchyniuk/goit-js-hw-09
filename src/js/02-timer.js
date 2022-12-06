@@ -71,8 +71,9 @@ const calendar = new AirDatepicker('#datetime-picker', {
     startTimerValue = chosen_Date_Time - currentTime;
     if (startTimerValue < 0) {
       toastr.warning('Choose time in the future');
+    } else {
+      updateSpanValues(startTimerValue);
     }
-    updateSpanValues(startTimerValue);
   },
 });
 
