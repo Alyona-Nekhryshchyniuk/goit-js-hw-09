@@ -1,5 +1,7 @@
 import AirDatepicker from 'air-datepicker';
 import 'air-datepicker/air-datepicker.css';
+import toastr from 'toastr';
+import 'toastr/build/toastr.min.css';
 
 const body = document.querySelector('body');
 const daySpan = document.querySelector('[data-days]');
@@ -68,7 +70,7 @@ const calendar = new AirDatepicker('#datetime-picker', {
     let chosen_Date_Time = formattedDate.date;
     startTimerValue = chosen_Date_Time - currentTime;
     if (startTimerValue < 0) {
-      console.log('neg');
+      toastr.warning('Choose time in the future');
     }
     updateSpanValues(startTimerValue);
   },
