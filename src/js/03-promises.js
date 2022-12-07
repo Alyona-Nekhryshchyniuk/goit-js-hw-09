@@ -1,26 +1,58 @@
 const button = document.querySelector('button');
-const delay = document.querySelector('[name="delay"]');
-const step = document.querySelector('[name="step"]');
-const amount = document.querySelector('[name="amount"]');
-const position = amount.value;
-console.log(position);
-// const delay
-// const firstDelay
 
-const regularPromiseCreation = (position, delay, firstDelay) => {
-  setTimeout(createPromise(1, 0), firstDelay);
-  for (const i = position; i >= 1; i--) {
-    setTimeout(createPromise(position, delay), 1000);
+let form = document.querySelector('form');
+
+// let position = 1;
+let delay;
+let id;
+
+const quantityOfFnCalling = e => {
+  e.preventDefault();
+  console.log('до цикла фор');
+  for (let i = 1; (i += 1); i = form.amount.value) {
+    console.log('внутри цикла фор');
+    id = setInterval(() => {
+      if (i === 1) {
+        delay = form.delay.value;
+      } else {
+        delay = form.step.value;
+      }
+      // console.log(position);
+      createPromise(i, delay)
+        .then(({ position, delay }) => {
+          console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
+        })
+        .catch(({ position, delay }) => {
+          console.log(`❌ Rejected promise ${position} in ${delay}ms`);
+        });
+    }, delay);
+    if (i === form.amount.value) {
+      clearInterval(id);
+    }
   }
 };
 
-button.addEventListener('click', regularPromiseCreation());
+form.addEventListener('submit', quantityOfFnCalling);
 
 function createPromise(position, delay) {
-  const shouldResolve = Math.random() > 0.3;
-  if (shouldResolve) {
-    // Fulfill
-  } else {
-    // Reject
-  }
+  return new Promise((resolve, reject) => {
+    const shouldResolve = Math.random() > 0.3;
+
+    setTimeout(() => {
+      if (shouldResolve) {
+        resolve({ position: position, delay: delay });
+      } else {
+        reject({ position: position, delay: delay });
+      }
+    }, delay);
+  });
 }
+// else {
+//   position = setTimeout(() => {
+//     if (shouldResolve) {
+//       resolve();
+//     } else {
+//       reject();
+//     }
+//   }, step);
+// }
