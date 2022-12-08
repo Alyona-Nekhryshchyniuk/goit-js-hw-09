@@ -11,20 +11,21 @@ const secSpan = document.querySelector('[data-seconds]');
 const startBut = document.querySelector('[data-start]');
 const timer = document.querySelector('.timer');
 const input = document.querySelector('input');
-
 const timerLabel = document.createElement('p');
+
+body.style.backgroundSize = '100%';
+body.style.backgroundImage =
+  "url('https://krot.info/uploads/posts/2022-01/1642571168_3-krot-info-p-bomba-art-8.jpg')";
+
 timerLabel.style.color = 'red';
 timerLabel.style.paddingLeft = '20px';
 timerLabel.style.fontSize = '46px';
 timerLabel.textContent = 'russia is blown up in';
-timer.prepend(timerLabel);
 
-console.log(body);
-body.style.backgroundSize = '100%';
-body.style.backgroundImage =
-  "url('https://krot.info/uploads/posts/2022-01/1642571168_3-krot-info-p-bomba-art-8.jpg')";
+timer.prepend(timerLabel);
 timer.style.marginLeft = '900px';
 timer.style.marginTop = '290px';
+
 startBut.style.backgroundColor = 'red';
 startBut.style.color = 'white';
 startBut.style.borderRadius = '15%';
@@ -49,12 +50,17 @@ for (const span of spanArray) {
 let id;
 let startTimerValue;
 
-const updateSpanValues = vals => {
-  let { days, hours, mins, secs } = getTimeComponents(vals);
-  daySpan.textContent = days;
-  hourSpan.textContent = hours;
-  minSpan.textContent = mins;
-  secSpan.textContent = secs;
+const updateSpanValues = newMsec => {
+  let { days, hours, mins, secs } = getTimeComponents(newMsec);
+  console.log(mins);
+  if (days === 0 && hours === 0 && mins === 0 && secs === 0) {
+    clearInterval(id);
+  } else {
+    daySpan.textContent = days;
+    hourSpan.textContent = hours;
+    minSpan.textContent = mins;
+    secSpan.textContent = secs;
+  }
 };
 
 const calendar = new AirDatepicker('#datetime-picker', {
@@ -82,9 +88,9 @@ const startTimerOnClick = () => {
   startBut.style.backgroundColor = 'lightcoral';
   id = setInterval(() => {
     startTimerValue -= 1000;
-    if (!startTimerValue) {
-      return;
-    }
+    // if (!startTimerValue) {
+    //   return;
+    // }
     updateSpanValues(startTimerValue);
   }, 1000);
 };
