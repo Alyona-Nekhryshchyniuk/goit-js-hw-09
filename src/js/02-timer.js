@@ -15,8 +15,8 @@ const input = document.querySelector('input');
 const timerLabel = document.createElement('p');
 timerLabel.style.color = 'red';
 timerLabel.style.paddingLeft = '20px';
-timerLabel.style.fontSize = '50px';
-timerLabel.textContent = 'russia explodes in';
+timerLabel.style.fontSize = '46px';
+timerLabel.textContent = 'russia is blown up in';
 timer.prepend(timerLabel);
 
 console.log(body);
@@ -50,11 +50,11 @@ let id;
 let startTimerValue;
 
 const updateSpanValues = vals => {
-  let chosenDateObj = getTimeComponents(vals);
-  daySpan.textContent = chosenDateObj.days;
-  hourSpan.textContent = chosenDateObj.hours;
-  minSpan.textContent = chosenDateObj.mins;
-  secSpan.textContent = chosenDateObj.secs;
+  let { days, hours, mins, secs } = getTimeComponents(vals);
+  daySpan.textContent = days;
+  hourSpan.textContent = hours;
+  minSpan.textContent = mins;
+  secSpan.textContent = secs;
 };
 
 const calendar = new AirDatepicker('#datetime-picker', {
@@ -82,6 +82,9 @@ const startTimerOnClick = () => {
   startBut.style.backgroundColor = 'lightcoral';
   id = setInterval(() => {
     startTimerValue -= 1000;
+    if (startTimerValue === 0) {
+      return;
+    }
     updateSpanValues(startTimerValue);
   }, 1000);
 };
