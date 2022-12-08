@@ -82,7 +82,7 @@ const startTimerOnClick = () => {
   startBut.style.backgroundColor = 'lightcoral';
   id = setInterval(() => {
     startTimerValue -= 1000;
-    if (startTimerValue === 0) {
+    if (!startTimerValue) {
       return;
     }
     updateSpanValues(startTimerValue);
