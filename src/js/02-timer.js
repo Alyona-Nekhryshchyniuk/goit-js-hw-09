@@ -86,7 +86,7 @@ const startTimerOnClick = () => {
     console.log(startTimerValue);
     startTimerValue -= 1000;
 
-    if (startTimerValue < 0000) {
+    if (startTimerValue < 0) {
       clearInterval(id);
     }
     updateSpanValues(startTimerValue);
