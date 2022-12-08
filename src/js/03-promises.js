@@ -10,11 +10,6 @@ let pause = 0;
 
 const preventDefaultOnSubmit = e => {
   e.preventDefault();
-  Notify.success('Ssuccess');
-
-  Notify.failure('Ffailure');
-
-  Notify.warning('Wwarning');
 
   const fn = () => {
     let step = form.step.value;
@@ -32,13 +27,13 @@ const preventDefaultOnSubmit = e => {
 
       createPromise(position, delay)
         .then(({ position, delay }) => {
-          console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
+          Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
           if (position < form.amount.value) {
             fn();
           }
         })
         .catch(({ position, delay }) => {
-          console.log(`❌ Rejected promise ${position} in ${delay}ms`);
+          Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
           delay = Number(delay);
           if (position < form.amount.value) {
             fn();
