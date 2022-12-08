@@ -30,17 +30,18 @@ const preventDefaultOnSubmit = e => {
           Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
           if (position < form.amount.value) {
             fn();
+          } else {
+            form.reset();
           }
         })
         .catch(({ position, delay }) => {
           Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
           delay = Number(delay);
-          // if (position < form.amount.value) {
-          //   fn();
-          //   console.log('fuck');
-          // } else {
-          //   console.log(form);
-          // }
+          if (position < form.amount.value) {
+            fn();
+          } else {
+            form.reset();
+          }
         });
     }, pause);
   };
