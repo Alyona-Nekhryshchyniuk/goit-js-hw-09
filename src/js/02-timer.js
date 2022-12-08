@@ -52,15 +52,11 @@ let startTimerValue;
 
 const updateSpanValues = newMsec => {
   let { days, hours, mins, secs } = getTimeComponents(newMsec);
-  console.log(mins);
-  if (days === 0 && hours === 0 && mins === 0 && secs === 0) {
-    clearInterval(id);
-  } else {
-    daySpan.textContent = days;
-    hourSpan.textContent = hours;
-    minSpan.textContent = mins;
-    secSpan.textContent = secs;
-  }
+
+  daySpan.textContent = days;
+  hourSpan.textContent = hours;
+  minSpan.textContent = mins;
+  secSpan.textContent = secs;
 };
 
 const calendar = new AirDatepicker('#datetime-picker', {
@@ -87,10 +83,12 @@ const startTimerOnClick = () => {
   startBut.setAttribute('disabled', '');
   startBut.style.backgroundColor = 'lightcoral';
   id = setInterval(() => {
+    console.log(startTimerValue);
     startTimerValue -= 1000;
-    // if (!startTimerValue) {
-    //   return;
-    // }
+
+    if (startTimerValue < 1000) {
+      clearInterval(id);
+    }
     updateSpanValues(startTimerValue);
   }, 1000);
 };
