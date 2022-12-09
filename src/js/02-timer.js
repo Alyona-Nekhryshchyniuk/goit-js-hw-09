@@ -19,7 +19,7 @@ body.style.backgroundImage =
 
 timerLabel.style.color = 'red';
 timerLabel.style.paddingLeft = '14px';
-timerLabel.style.fontSize = '38px';
+timerLabel.style.fontSize = '37px';
 timerLabel.textContent = 'russia will be blown up in';
 
 timer.prepend(timerLabel);
