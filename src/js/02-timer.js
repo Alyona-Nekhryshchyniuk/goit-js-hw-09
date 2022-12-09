@@ -18,8 +18,8 @@ body.style.backgroundImage =
   "url('https://krot.info/uploads/posts/2022-01/1642571168_3-krot-info-p-bomba-art-8.jpg')";
 
 timerLabel.style.color = 'red';
-timerLabel.style.paddingLeft = '20px';
-timerLabel.style.fontSize = '40px';
+timerLabel.style.paddingLeft = '18px';
+timerLabel.style.fontSize = '38px';
 timerLabel.textContent = 'russia will be blown up in';
 
 timer.prepend(timerLabel);
