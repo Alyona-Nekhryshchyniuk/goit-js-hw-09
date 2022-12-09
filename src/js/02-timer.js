@@ -19,8 +19,8 @@ body.style.backgroundImage =
 
 timerLabel.style.color = 'red';
 timerLabel.style.paddingLeft = '20px';
-timerLabel.style.fontSize = '46px';
-timerLabel.textContent = 'russia is blown up in';
+timerLabel.style.fontSize = '40px';
+timerLabel.textContent = 'russia will be blown up in';
 
 timer.prepend(timerLabel);
 timer.style.marginLeft = '900px';
