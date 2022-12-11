@@ -47,6 +47,8 @@ for (const span of spanArray) {
   span.style.fontSize = '46px';
 }
 
+// js
+
 let id;
 let startTimerValue;
 
@@ -59,34 +61,39 @@ const updateSpanValues = newMsec => {
   secSpan.textContent = secs;
 };
 
-const calendar = new AirDatepicker('#datetime-picker', {
+new AirDatepicker('#datetime-picker', {
   timepicker: true,
+
   onSelect(formattedDate) {
-    calendar.hide();
+    // calendar.hide();
     clearInterval(id);
-    if (startBut.hasAttribute('disabled')) {
-      startBut.removeAttribute('disabled');
-      startBut.style.backgroundColor = 'red';
-    }
+    // if (startBut.hasAttribute('disabled')) {
+    //   startBut.removeAttribute('disabled');
+    //   startBut.style.backgroundColor = 'red';
+    // }
     let currentTime = new Date();
+    console.log(`currentTime: ${currentTime}`);
     let chosen_Date_Time = formattedDate.date;
+    console.log(`chosenTime: ${chosen_Date_Time}`);
     startTimerValue = chosen_Date_Time - currentTime;
     if (startTimerValue < 0) {
       toastr.error('Please choose date in the future');
-    } else {
-      updateSpanValues(startTimerValue);
     }
+    // else {
+    //   updateSpanValues(startTimerValue);
+    // }
   },
 });
 
 const startTimerOnClick = () => {
   startBut.setAttribute('disabled', '');
   startBut.style.backgroundColor = 'lightcoral';
+
   id = setInterval(() => {
-    console.log(startTimerValue);
     startTimerValue -= 1000;
 
     if (startTimerValue < 0) {
+      console.log(startTimerValue);
       clearInterval(id);
     }
     updateSpanValues(startTimerValue);
