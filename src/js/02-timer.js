@@ -67,10 +67,10 @@ new AirDatepicker('#input', {
   onSelect(formattedDate) {
     // calendar.hide();
     clearInterval(id);
-    // if (startBut.hasAttribute('disabled')) {
-    //   startBut.removeAttribute('disabled');
-    //   startBut.style.backgroundColor = 'red';
-    // }
+    if (startBut.hasAttribute('disabled')) {
+      startBut.removeAttribute('disabled');
+      startBut.style.backgroundColor = 'red';
+    }
     let currentTime = new Date();
     console.log(`currentTime: ${currentTime}`);
     let chosen_Date_Time = formattedDate.date;
