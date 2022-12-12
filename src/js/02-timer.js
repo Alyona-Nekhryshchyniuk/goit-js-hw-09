@@ -1,3 +1,4 @@
+// import style from './timer.css';
 import AirDatepicker from 'air-datepicker';
 import 'air-datepicker/air-datepicker.css';
 import toastr from 'toastr';
