@@ -63,7 +63,7 @@ const updateSpanValues = newMsec => {
 
 new AirDatepicker('#input', {
   timepicker: true,
-  inline: true,
+  // inline: true,
   onSelect(formattedDate) {
     // calendar.hide();
     clearInterval(id);
